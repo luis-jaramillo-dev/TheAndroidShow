@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.flowDemo
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.sharedFlowDemo
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.stateFlowDemo
 import co.luisjaramillo.dev.coroutinesmasterclass.ui.theme.CoroutinesMasterclassTheme
 
 class MainActivity : ComponentActivity() {
