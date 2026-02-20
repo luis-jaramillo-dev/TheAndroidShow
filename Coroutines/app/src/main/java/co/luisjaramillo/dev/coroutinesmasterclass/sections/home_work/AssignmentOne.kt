@@ -4,15 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,19 +18,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 fun assignment1() {
 
     val scope = CoroutineScope(Dispatchers.Default)
+
 
     scope.launch {
 
@@ -118,31 +112,49 @@ fun BirdScreen() {
         verticalArrangement = Arrangement.Center
     ) {
         Button(onClick = {
-            selectedBird = "Coo"
-            job = emitSound(Bird(name = "Bird 1", sound = "Coo", interval = 1000L), scope)
+            selectedBird = "Tweety"
+            job = emitSound(Bird(name = "Tweety", sound = "Coo", interval = 1000L), scope)
         }) {
-            Text("Bird 1: Coo")
+            Text("Tweety: Coo")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
-            selectedBird = "Bird 2"
-            job = emitSound(Bird(name = "Bird 2", sound = "Caw", interval = 2000L), scope)
+            selectedBird = "Zazu"
+            job = emitSound(Bird(name = "Zazu", sound = "Caw", interval = 2000L), scope)
         }) {
-            Text("Bird 2: Caw")
+            Text("Zazu: Caw")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
-            selectedBird = "Chirp"
-            job = emitSound(Bird(name = "Bird 3", sound = "Chirp", interval = 3000L), scope)
+            selectedBird = "Woodstock"
+            job = emitSound(Bird(name = "Woodstock", sound = "Chirp", interval = 3000L), scope)
         }) {
-            Text("Bird 3: Chirp")
+            Text("Woodstock: Chirp")
         }
 
         Spacer(modifier = Modifier.height(32.dp))
+
+        Button(onClick = {
+            scope.launch {
+                val deferredResult = async {
+                    println("Starting referred")
+                    delay(1000L)
+                    println("Ending referred")
+                    return@async 42
+
+                }
+                println("Waiting for result")
+                val result = deferredResult.await()
+                println("Result $result")
+            }
+
+        }) {
+            Text("Tests print")
+        }
 
         selectedBird?.let {
             Text(text = "Selected Bird: $it", style = MaterialTheme.typography.headlineMedium)
@@ -150,8 +162,13 @@ fun BirdScreen() {
     }
 }
 
+object test33 {
+    val test: String = "Hola"
+}
+
 
 fun emitSound(bird: Bird, scope: CoroutineScope): Job {
+    test33.test
     return scope.launch {
         while (isActive) {
             println(bird.sound)
