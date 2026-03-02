@@ -53,7 +53,6 @@ fun AssignmentTwoScreen() {
     }
 
     LaunchedEffect(photoUri) {
-
         if (photoUri != null) {
             try {
                 isLoading = true
