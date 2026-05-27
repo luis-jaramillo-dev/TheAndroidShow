@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.flowDemo
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.sharedFlowDemo
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.stateFlowDemo
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.stateInDemo
+import co.luisjaramillo.dev.coroutinesmasterclass.sections.flow_fundamentals.testZipFunction
 import co.luisjaramillo.dev.coroutinesmasterclass.util.PhotoProcessor
 import co.luisjaramillo.dev.coroutinesmasterclass.util.RotatingBoxScreen
 import coil.compose.rememberAsyncImagePainter

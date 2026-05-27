@@ -15,16 +15,16 @@ fun stateFlowDemo() {
         println("Value is $it")
     }.launchIn(GlobalScope)
 
-    stateFlow.onEach {
-        println("Value from collector 2 is $it")
-    }.launchIn(GlobalScope)
+
 
     GlobalScope.launch {
         repeat(10) {
             delay(500L)
             stateFlow.value = it
         }
-
+        stateFlow.onEach {
+            println("Value from collector 2 is $it")
+        }.launchIn(GlobalScope)
 
     }
 

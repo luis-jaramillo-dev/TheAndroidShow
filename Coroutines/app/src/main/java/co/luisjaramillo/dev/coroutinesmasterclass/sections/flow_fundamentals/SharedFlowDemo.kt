@@ -14,7 +14,7 @@ fun sharedFlowDemo() {
         onBufferOverflow = BufferOverflow.DROP_LATEST
     )
     GlobalScope.launch {
-        delay(3000L)
+        delay(3000L)// validate the flow emits values even when there is not a collector
         sharedFlowDemo.onEach {
             println("Collector 1: $it")
             delay(5000L)
@@ -29,7 +29,9 @@ fun sharedFlowDemo() {
     GlobalScope.launch {
         repeat(10) {
             delay(500L)
+            println("Emiting Value $it")
             sharedFlowDemo.emit(it)
+            println("Valor emitido $it")
         }
     }
 
