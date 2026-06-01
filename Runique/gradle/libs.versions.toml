@@ -1,50 +1,52 @@
 [versions]
-agp = "8.2.2"
-androidTools = "31.2.2"
-core = "1.10.3"
-playCore = "1.10.3"
-coreSplashscreen = "1.0.1"
-coilCompose = "2.6.0"
-composeCompiler = "1.5.9"
-desugar_jdk_libs = "2.0.4"
-kotlin = "1.9.22"
-coreKtx = "1.12.0"
+agp = "9.0.1"
+androidTools = "32.0.1"
+playFeatureDelivery = "2.1.0"
+coreSplashscreen = "1.2.0"
+coilCompose = "2.7.0"
+desugar_jdk_libs = "2.1.5"
+kotlin = "2.3.10"
+coreKtx = "1.17.0"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-activityCompose = "1.8.2"
-ktor = "2.3.8"
-ktorClientLogging = "2.3.8"
-ktorServerCallLogging = "2.3.7"
-koin = "3.5.3"
-lifecycleRuntimeKtx = "2.7.0"
-composeBom = "2024.02.02"
-materialIconsExtended = "1.6.3"
-navigationCompose = "2.7.7"
-securityCryptoKtx = "1.1.0-alpha06"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+activityCompose = "1.12.4"
+ktor = "3.4.0"
+ktorClientLogging = "3.4.0"
+koin = "4.1.1"
+lifecycleRuntimeKtx = "2.10.0"
+composeBom = "2026.02.00"
+materialIconsExtended = "1.7.8"
+navigationCompose = "2.9.7"
+securityCryptoKtx = "1.1.0"
 timber = "5.0.1"
-ksp = "1.9.22-1.0.17"
-room = "2.6.1"
-appcompat = "1.6.1"
-material = "1.11.0"
-org-jetbrains-kotlin-jvm = "1.9.22"
-maps = "4.3.3"
-coroutines = "1.8.0"
-gmsLocation = "21.2.0"
-mapsUtils = "5.0.0"
-bson = "4.11.1"
-work = "2.9.0"
-kotlinx-serialization = "1.6.3"
+ksp = "2.3.4"
+room = "2.8.4"
+appcompat = "1.7.1"
+material = "1.13.0"
+org-jetbrains-kotlin-jvm = "2.3.10"
+maps = "8.1.0"
+coroutines = "1.10.2"
+gmsLocation = "21.3.0"
+mapsUtils = "6.0.0"
+bson = "5.6.3"
+work = "2.11.1"
+kotlinx-serialization = "1.10.0"
 secretsPlugin = "2.0.1"
-playServicesMaps = "18.2.0"
-annotation = "1.7.1"
+playServicesMaps = "20.0.0"
+annotation = "1.9.1"
+composeWearOs = "1.5.6"
+composeMaterialWearOs = "1.5.6"
+health = "1.0.0"
+play-services-wearable = "19.0.0"
+wear = "1.3.0"
 
 # Project versions
 projectApplicationId = "com.plcoding.runique"
 projectVersionName = "1.0"
 projectMinSdkVersion = "25"
-projectTargetSdkVersion = "34"
-projectCompileSdkVersion = "34"
+projectTargetSdkVersion = "36"
+projectCompileSdkVersion = "36"
 projectVersionCode = "1"
 
 [libraries]
@@ -56,11 +58,11 @@ androidx-material-icons-extended = { module = "androidx.compose.material:materia
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-security-crypto-ktx = { module = "androidx.security:security-crypto-ktx", version.ref = "securityCryptoKtx" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
-core = { module = "com.google.android.play:core", version.ref = "playCore" }
-core-testing = { module = "com.google.android.play:core-testing", version.ref = "playCore" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines"}
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines"}
+play-feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "playFeatureDelivery" }
+play-feature-delivery-ktx = { module = "com.google.android.play:feature-delivery-ktx", version.ref = "playFeatureDelivery" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-work = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
@@ -98,6 +100,12 @@ org-mongodb-bson = { module = "org.mongodb:bson", version.ref = "bson" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 google-maps-android-utils-ktx = { module = "com.google.maps.android:maps-utils-ktx", version.ref = "mapsUtils"}
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterialWearOs" }
+androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "composeWearOs" }
+androidx-wear-compose-ui-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling", version.ref = "composeWearOs" }
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "play-services-wearable" }
+androidx-health-services-client = { group = "androidx.health", name = "health-services-client", version.ref = "health" }
+androidx-wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
 
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -116,6 +124,7 @@ room = { id = "androidx.room", version.ref = "room" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 runique-android-application = { id = "runique.android.application", version = "unspecified" }
 runique-android-application-compose = { id = "runique.android.application.compose", version = "unspecified" }
@@ -123,8 +132,10 @@ runique-android-library = { id = "runique.android.library", version = "unspecifi
 runique-android-library-compose = { id = "runique.android.library.compose", version = "unspecified" }
 runique-android-feature-ui = { id = "runique.android.feature.ui", version = "unspecified" }
 runique-android-room = { id = "runique.android.room", version = "unspecified" }
+runique-android-dynamic-feature = { id = "runique.android.dynamic.feature", version = "unspecified" }
 runique-jvm-library = { id = "runique.jvm.library", version = "unspecified" }
 runique-jvm-ktor = { id = "runique.jvm.ktor", version = "unspecified" }
+runique-android-application-wear-compose = { id = "runique.android.application.wear.compose", version = "unspecified" }
 
 [bundles]
 compose = [

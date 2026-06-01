@@ -8,6 +8,7 @@
       </SelectionState>
       <SelectionState runConfigName="wear.app">
         <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="RunDataCardPreview">
         <option name="selectionMode" value="DROPDOWN" />

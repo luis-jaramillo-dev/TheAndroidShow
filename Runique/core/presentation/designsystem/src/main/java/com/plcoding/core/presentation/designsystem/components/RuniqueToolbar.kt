@@ -10,8 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
+
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -77,7 +76,7 @@ fun RuniqueToolbar(
             containerColor = Color.Transparent
         ),
         navigationIcon = {
-            if (showBackButton) {
+            if(showBackButton) {
                 IconButton(onClick = onBackClick) {
                     Icon(
                         imageVector = ArrowLeftIcon,
@@ -88,7 +87,7 @@ fun RuniqueToolbar(
             }
         },
         actions = {
-            if (menuItems.isNotEmpty()) {
+            if(menuItems.isNotEmpty()) {
                 Box {
                     DropdownMenu(
                         expanded = isDropDownOpen,
@@ -116,11 +115,11 @@ fun RuniqueToolbar(
                     IconButton(onClick = {
                         isDropDownOpen = true
                     }) {
-                        Icon(
-                            imageVector = Icons.Default.MoreVert,
-                            contentDescription = stringResource(id = R.string.open_menu),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
+//                        Icon(
+//                            imageVector = Icons.Default.MoreVert,
+//                            contentDescription = stringResource(id = R.string.open_menu),
+//                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+//                        )
                     }
                 }
             }

@@ -5,12 +5,32 @@ plugins {
 
 group = "com.plcoding.runique.buildlogic"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
+}
+
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
+}
+
+// Catch plugin issues early; Gradle 9 is stricter about plugin correctness.
+tasks {
+    validatePlugins {
+        enableStricterValidation = true
+        failOnWarning = true
+    }
 }
 
 gradlePlugin {
@@ -33,11 +53,15 @@ gradlePlugin {
         }
         register("androidFeatureUi") {
             id = "runique.android.feature.ui"
-            implementationClass = "AndroidFeatureUIConventionPlugin"
+            implementationClass = "AndroidFeatureUiConventionPlugin"
         }
         register("androidRoom") {
             id = "runique.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
+        }
+        register("androidDynamicFeature") {
+            id = "runique.android.dynamic.feature"
+            implementationClass = "AndroidDynamicFeatureConventionPlugin"
         }
         register("jvmLibrary") {
             id = "runique.jvm.library"
