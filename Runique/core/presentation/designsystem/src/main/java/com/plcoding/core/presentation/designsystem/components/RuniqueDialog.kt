@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,8 +25,8 @@ fun RuniqueDialog(
     modifier: Modifier,
     title: String,
     description: String,
-    primaryButton : @Composable () -> Unit,
-    secondaryButton : @Composable () -> Unit = {},
+    primaryButton: @Composable RowScope.() -> Unit,
+    secondaryButton: @Composable RowScope.() -> Unit = {},
     onDismiss: () -> Unit,
     isPrimaryLoading: Boolean = false
 
@@ -57,7 +58,7 @@ fun RuniqueDialog(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 secondaryButton()
                 primaryButton()
 
