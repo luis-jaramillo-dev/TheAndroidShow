@@ -45,7 +45,7 @@ fun RunDataCard(
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        RunDataItem(
+            RunDataItem(
             title = stringResource(id = R.string.duration),
             value = elapsedTime.formatted(),
             valueFontSize = 32.sp

@@ -1,4 +1,4 @@
-package com.plcoding.run.presentation.active_run
+package com.plcoding.run.presentation.active_run.components.maps
 
 import android.graphics.Bitmap
 import androidx.compose.animation.core.animateFloatAsState
@@ -31,6 +31,7 @@ import com.plcoding.core.domain.location.Location
 import com.plcoding.core.domain.location.LocationTimestamp
 import com.plcoding.core.presentation.designsystem.RunIcon
 import com.plcoding.run.presentation.R
+import com.plcoding.run.presentation.active_run.RuniquePolyLines
 
 @Composable
 fun TrackerMap(
@@ -87,6 +88,7 @@ fun TrackerMap(
             zoomControlsEnabled = false
         )
     ) {
+        RuniquePolyLines(locations = locations)
         if (!isRunFinished && currentLocation != null) {
             MarkerComposable(
                 currentLocation,
@@ -98,10 +100,10 @@ fun TrackerMap(
                         .clip(CircleShape)
                         .background(MaterialTheme.colorScheme.primary),
                     contentAlignment = Alignment.Center
-                ){
+                ) {
                     Icon(
-                        imageVector= RunIcon,
-                        contentDescription=null,
+                        imageVector = RunIcon,
+                        contentDescription = null,
                         tint = MaterialTheme.colorScheme.onPrimary,
                         modifier = Modifier.size(20.dp)
                     )

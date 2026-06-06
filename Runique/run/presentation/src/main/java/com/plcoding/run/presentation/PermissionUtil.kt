@@ -7,7 +7,7 @@ import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
 
-fun ComponentActivity.shouldShowLocationPermisionRationale(): Boolean {
+fun ComponentActivity.shouldShowLocationPermissionRationale(): Boolean {
     return shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
 }
 

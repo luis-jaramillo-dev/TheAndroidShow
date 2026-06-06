@@ -31,9 +31,10 @@ import com.plcoding.core.presentation.designsystem.components.RuniqueScaffold
 import com.plcoding.core.presentation.designsystem.components.RuniqueToolbar
 import com.plcoding.run.presentation.R
 import com.plcoding.run.presentation.active_run.components.RunDataCard
+import com.plcoding.run.presentation.active_run.components.maps.TrackerMap
 import com.plcoding.run.presentation.hasLocationPermission
 import com.plcoding.run.presentation.hasNotificationPermission
-import com.plcoding.run.presentation.shouldShowLocationPermisionRationale
+import com.plcoding.run.presentation.shouldShowLocationPermissionRationale
 import com.plcoding.run.presentation.shouldShowNotificationPermissionRationale
 import org.koin.androidx.compose.koinViewModel
 
@@ -66,7 +67,7 @@ private fun ActiveRunScreen(
         } else true
 
         val activity = context as ComponentActivity
-        val showLocationRationale = activity.shouldShowLocationPermisionRationale()
+        val showLocationRationale = activity.shouldShowLocationPermissionRationale()
         val showNotificationRationale = activity.shouldShowNotificationPermissionRationale()
 
         onAction(
@@ -77,14 +78,14 @@ private fun ActiveRunScreen(
         )
         onAction(
             ActiveRunAction.SubmitNotificationPermissionInfo(
-                acceptNotificationPermission = hasNotificationPermission,
+                acceptedNotificationPermission = hasNotificationPermission,
                 showNotificationPermissionRationale = showNotificationRationale
             )
         )
     }
     LaunchedEffect(key1 = true) {
         val activity = context as ComponentActivity
-        val showLocationRationale = activity.shouldShowLocationPermisionRationale()
+        val showLocationRationale = activity.shouldShowLocationPermissionRationale()
         val showNotificationRationale = activity.shouldShowNotificationPermissionRationale()
         onAction(
             ActiveRunAction.SubmitLocationPermissionInfo(
@@ -94,7 +95,7 @@ private fun ActiveRunScreen(
         )
         onAction(
             ActiveRunAction.SubmitNotificationPermissionInfo(
-                acceptNotificationPermission = context.hasNotificationPermission(),
+                acceptedNotificationPermission = context.hasNotificationPermission(),
                 showNotificationPermissionRationale = showNotificationRationale
             )
         )
@@ -118,7 +119,7 @@ private fun ActiveRunScreen(
             RuniqueFloatingActionButton(
                 icon = if (state.shouldTrack) StopIcon else StartIcon,
                 onClick = {
-
+                    onAction(ActiveRunAction.OnToggleRunClick)
                 },
                 iconSize = 20.dp,
                 contentDescription = if (state.shouldTrack) stringResource(R.string.pause_run) else stringResource(
@@ -164,10 +165,6 @@ private fun ActiveRunScreen(
 
                 state.showLocationRationale -> {
                     stringResource(id = R.string.location_rationale)
-                }
-
-                state.showNotificationRationale -> {
-                    stringResource(id = R.string.notification_rationale)
                 }
 
                 else -> {

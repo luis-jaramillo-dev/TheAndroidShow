@@ -24,12 +24,10 @@ class ActiveRunViewModel(
         private set
     private val hasLocationPermission = MutableStateFlow(false)
 
-
-    private val eventChannel = Channel<ActiveRunEvent>()
-    val events = eventChannel.receiveAsFlow()
     private val shouldTrack = snapshotFlow { state.shouldTrack }
         .stateIn(viewModelScope, SharingStarted.Lazily, state.shouldTrack)
-
+    private val eventChannel = Channel<ActiveRunEvent>()
+    val events = eventChannel.receiveAsFlow()
     private val isTracking = combine(
         shouldTrack,
         hasLocationPermission
@@ -37,15 +35,16 @@ class ActiveRunViewModel(
         shouldTrack && hasPermission
     }.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
-    init {
-        hasLocationPermission.onEach { hasPermission ->
-            if (hasPermission) {
-                runningTracker.startObservingLocation()
-            } else {
-                runningTracker.stopObservingLocation()
-            }
 
-        }.launchIn(viewModelScope)
+    init {
+        hasLocationPermission
+            .onEach { hasPermission ->
+                if (hasPermission) {
+                    runningTracker.startObservingLocation()
+                } else {
+                    runningTracker.stopObservingLocation()
+                }
+            }.launchIn(viewModelScope)
 
         isTracking
             .onEach { isTracking ->
@@ -78,14 +77,20 @@ class ActiveRunViewModel(
                     shouldTrack = false
                 )
             }
-            ActiveRunAction.OnFinishRunClick -> {
 
+            ActiveRunAction.OnFinishRunClick -> {
+                state = state.copy(
+                    isRunFinished = true,
+                    isSavingRun = true
+                )
             }
+
             ActiveRunAction.OnResumeRunClick -> {
                 state = state.copy(
                     shouldTrack = true
                 )
             }
+
             ActiveRunAction.OnToggleRunClick -> {
                 state = state.copy(
                     hasStartedRunning = true,
@@ -103,7 +108,7 @@ class ActiveRunViewModel(
             is ActiveRunAction.SubmitNotificationPermissionInfo -> {
 
                 state = state.copy(
-                    showLocationRationale = action.showNotificationPermissionRationale
+                    showNotificationRationale = action.showNotificationPermissionRationale
                 )
             }
 
@@ -114,7 +119,6 @@ class ActiveRunViewModel(
                 )
             }
 
-            else -> Unit
         }
     }
 }
