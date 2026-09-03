@@ -33,6 +33,7 @@ import com.plcoding.core.presentation.designsystem.components.RuniqueToolbar
 import com.plcoding.run.presentation.R
 import com.plcoding.run.presentation.active_run.components.RunDataCard
 import com.plcoding.run.presentation.active_run.components.maps.TrackerMap
+import com.plcoding.run.presentation.active_run.service.ActiveRunService
 import com.plcoding.run.presentation.hasLocationPermission
 import com.plcoding.run.presentation.hasNotificationPermission
 import com.plcoding.run.presentation.shouldShowLocationPermissionRationale
@@ -41,10 +42,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ActiveRunScreenRoot(
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     viewModel: ActiveRunViewModel = koinViewModel()
 ) {
     ActiveRunScreen(
         state = viewModel.state,
+        onServiceToggle = onServiceToggle,
         onAction = viewModel::onAction
     )
 }
@@ -53,6 +56,7 @@ fun ActiveRunScreenRoot(
 @Composable
 private fun ActiveRunScreen(
     state: ActiveRunState,
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     onAction: (ActiveRunAction) -> Unit
 ) {
     val context = LocalContext.current
@@ -105,6 +109,16 @@ private fun ActiveRunScreen(
         }
     }
 
+    LaunchedEffect(key1 = state.isRunFinished) {
+        onServiceToggle(false)
+    }
+
+    LaunchedEffect(key1 = state.shouldTrack) {
+        if (context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceActive) {
+            onServiceToggle(true)
+        }
+
+    }
     RuniqueScaffold(
         withGradient = false,
         topAppBar = {
@@ -248,6 +262,7 @@ private fun ActiveRunScreenPreview() {
     RuniqueTheme {
         ActiveRunScreen(
             state = ActiveRunState(),
+            onServiceToggle = {},
             onAction = {}
         )
     }
